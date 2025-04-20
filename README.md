@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/BookOps-CAT/virtual-barcodes/actions/workflows/unit-tests.yaml/badge.svg?branch=main)](https://github.com/BookOps-CAT/virtual-barcodes/actions) [![Coverage Status](https://coveralls.io/repos/github/BookOps-CAT/virtual-barcodes/badge.svg?branch=main)](https://coveralls.io/github/BookOps-CAT/virtual-barcodes?branch=main) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # virtual-barcodes
  
  A tool to generate virtual barcodes to be used in NYPL Sierra.
