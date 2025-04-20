@@ -1,0 +1,47 @@
+[project]
+name = "virtual-barcodes"
+version = "0.1.0"
+description = "A package for creation of Sierra's virtual-barcodes."
+authors = [
+    {name = "klinga",email = "klingaroo@gmail.com"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click (>=8.1.8,<9.0.0)"
+]
+keywords = ["barcodes", "sierra"]
+
+[tool.setuptools.packages.find]
+where = ["virtual-barcodes"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.8"
+
+[tool.poetry.scripts]
+virtual-barcodes = "virtual_barcodes:main"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+flake8 = "^7.2.0"
+mypy = "^1.15.0"
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.coverage.run]
+relative_files = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
