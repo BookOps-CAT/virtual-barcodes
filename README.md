@@ -10,5 +10,6 @@
 ## Installation
 ## Usage
 ## References
-+ Sierra barcode documentation
++ [Sierra barcode documentation](https://ilsstaff.nypl.org:63100/sierra/admin/help/Content/sgcir/sgcir_appen_noteonbarcodes.html#barcode_patterns)
+  + note when the difference the step number 4 (10 - unit digit from the previous step) is 10, use the unit digit "0"
 ## Changelog 
