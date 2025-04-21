@@ -20,7 +20,8 @@ class VirtualBarcode:
     def _calculate_digit_check(self) -> int:
         """
         Calculate the digit check for the barcode.
-        The digit check is the last digit of the barcode, calculated using a specific algorithm.
+        The digit check is the last digit of the barcode, calculated using a
+        specific algorithm defined in Sierra documentation.
         """
         digits = [int(d) for d in f"{self.prefix}{self.zfill_identifier}"]
         even_sum = sum(digits[i] for i in range(1, len(digits), 2))
