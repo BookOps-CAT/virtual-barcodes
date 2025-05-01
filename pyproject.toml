@@ -13,15 +13,11 @@ dependencies = [
 ]
 keywords = ["barcodes", "sierra"]
 
-[tool.setuptools.packages.find]
-where = ["virtual-barcodes"]
+[project.scripts]
+barcodes = "barcodes.cli:cli"
 
-[tool.poetry.dependencies]
-python = "^3.12"
-click = "^8.1.8"
-
-[tool.poetry.scripts]
-virtual-barcodes = "virtual_barcodes:main"
+[tool.poetry]
+packages = [{include = "barcodes"}]
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"

@@ -2,7 +2,7 @@ from typing import Generator
 
 import pytest
 
-from virtual_barcodes.barcode import VirtualBarcode, minter
+from barcodes.barcode import VirtualBarcode, minter
 
 
 @pytest.mark.parametrize(
