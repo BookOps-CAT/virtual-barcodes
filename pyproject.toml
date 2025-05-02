@@ -9,7 +9,8 @@ license = "MIT"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "click (>=8.1.8,<9.0.0)"
+    "click (>=8.1.8,<9.0.0)",
+    "gspread (>=6.2.0,<7.0.0)"
 ]
 keywords = ["barcodes", "sierra"]
 
@@ -34,6 +35,10 @@ target-version = ["py312"]
 python_version = "3.12"
 warn_return_any = true
 warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["webtest: marks tests connecting to live Google Sheets"]
 
 [tool.coverage.run]
 relative_files = true
