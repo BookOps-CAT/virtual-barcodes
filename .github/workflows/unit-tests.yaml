@@ -39,7 +39,7 @@ jobs:
         run: poetry run flake8 -v --max-line-length=88 --ignore=tests/*:E501,W503
 
       - name: Run tests
-        run: poetry run pytest -m "not webtest" -v --cov=virtual_barcodes/
+        run: poetry run pytest -m "not webtest" -v --cov=barcodes/
 
       - name: Send report to Coveralls
         uses: AndreMiras/coveralls-python-action@develop
