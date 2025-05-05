@@ -19,6 +19,28 @@ def get_default_sheet() -> Any:
     return data["key"]
 
 
+def get_last_barcode(sheet_id: Optional[str] = "") -> str:
+    """Get the last barcode from the Google Sheet.
+
+    Args:
+        sheet_id (Optional[str]): Google Sheet ID. If not provided, the default
+            sheet ID is used.
+
+    Returns:
+        str: The last barcode in the sheet.
+    """
+    if not sheet_id:
+        sheet_id = get_default_sheet()
+
+    sh = get_sheet(sheet_id)
+    ws = get_worksheet_by_name("barcodes-to-date", sh)
+    values = ws.get_all_values()
+    if values:
+        return values[-1][0].strip()
+    else:
+        return ""
+
+
 def get_sheet(key: str = "") -> gspread.spreadsheet.Spreadsheet:
     """Get the virtual barcodes Google Sheet as gspread Spreadsheet object."""
     cred_fh = get_creds()
@@ -79,7 +101,14 @@ def add_barcodes_to_sheet(
     unit_code: str,
     sheet_id: Optional[str] = "",
 ) -> None:
-    """Add barcodes to the Google Sheet."""
+    """Add barcodes to the Google Sheet.
+
+    Args:
+        barcodes (list[str]): List of barcodes to add.
+        unit_code (str): Unit/Division's code using the barcodes.
+        sheet_id (Optional[str]): Google Sheet ID. If not provided, the default
+            sheet ID is used.
+    """
     if not sheet_id:
         sheet_id = get_default_sheet()
 
@@ -90,13 +119,15 @@ def add_barcodes_to_sheet(
     except gspread.WorksheetNotFound:
         unit_ws = create_worksheet(unit_code, sh, len(barcodes))
 
-    # get barcodes-to-date worksheet (main)
+    # populate barcodes-to-date worksheet (main)
     main_ws = get_worksheet_by_name("barcodes-to-date", sh)
     main_range_str = calculate_range(barcodes, main_ws)
-
     main_values = prep_values_for_main_ws_update(barcodes, unit_code)
+    main_ws.add_rows(len(barcodes))
+    add_barcodes_to_worksheet(main_range_str, main_values, main_ws)
+
+    # populate unit worksheet as well
     unit_range_str = calculate_range(barcodes, unit_ws)
     unit_values = prep_values_for_unit_ws_update(barcodes)
-
-    add_barcodes_to_worksheet(main_range_str, main_values, main_ws)
+    unit_ws.add_rows(len(barcodes))
     add_barcodes_to_worksheet(unit_range_str, unit_values, unit_ws)
