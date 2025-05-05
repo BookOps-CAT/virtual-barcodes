@@ -42,6 +42,7 @@ markers = ["webtest: marks tests connecting to live Google Sheets"]
 
 [tool.coverage.run]
 relative_files = true
+source = ["."]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
