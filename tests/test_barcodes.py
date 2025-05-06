@@ -1,5 +1,3 @@
-from typing import Generator
-
 import pytest
 
 from barcodes.barcode import VirtualBarcode
