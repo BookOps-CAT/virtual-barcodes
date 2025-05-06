@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from typing import Generator
-
 
 class VirtualBarcode:
     def __init__(self, identifier: int, prefix: int = 33633):
@@ -40,22 +38,3 @@ class VirtualBarcode:
 
     def __repr__(self):
         return f"{self.prefix}{self.zfill_identifier}{self.digit_check}"
-
-
-def minter(
-    starting_sequence: int, batch_size: int, prefix: int = 33633
-) -> Generator[str, None, None]:
-    """
-    Mint a batch of 14-digit barcodes.
-
-    Args:
-        prefix (str): The prefix for the barcodes.
-        starting_sequence (int): The starting number for the barcodes.
-        batch_size (int): The number of barcodes to mint.
-
-    Returns:
-        list[str]: A list of minted barcodes.
-    """
-    for i in range(starting_sequence, starting_sequence + batch_size):
-        barcode = VirtualBarcode(identifier=i, prefix=prefix)
-        yield str(barcode)

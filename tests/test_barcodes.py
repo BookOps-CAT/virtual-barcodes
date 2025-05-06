@@ -2,7 +2,7 @@ from typing import Generator
 
 import pytest
 
-from barcodes.barcode import VirtualBarcode, minter
+from barcodes.barcode import VirtualBarcode
 
 
 @pytest.mark.parametrize(
@@ -42,21 +42,3 @@ def test_VirtualBarcode_instance():
     assert barcode.prefix == 73433
     assert barcode.zfill_identifier == "00000001"
     assert barcode.digit_check == 3
-
-
-def test_minter_return_type():
-    assert isinstance(minter(1, 73433), Generator)
-
-
-def test_minter_return_value():
-    minted_barcodes = []
-    for barcode in minter(1, 5, 73433):
-        minted_barcodes.append(barcode)
-
-    assert minted_barcodes == [
-        "73433000000013",
-        "73433000000021",
-        "73433000000039",
-        "73433000000047",
-        "73433000000054",
-    ]
