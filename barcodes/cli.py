@@ -1,6 +1,5 @@
 import click
 
-from barcodes.minter import mint_barcodes
 from barcodes.store import add_barcodes_to_sheet, determine_new_barcodes, get_sheet
 
 
@@ -31,7 +30,7 @@ def mint(unit_code: str, batch_size: int) -> None:
     sh = get_sheet()
     barcodes = determine_new_barcodes(sh, batch_size)
     add_barcodes_to_sheet(barcodes, unit_code, sh)
-    click.echo(f"Minted {len(barcodes)} barcodes for unit code {unit_code}.")
+    click.echo(f"Minted {len(barcodes)} barcodes for unit/division {unit_code}.")
 
 
 def cli() -> None:
