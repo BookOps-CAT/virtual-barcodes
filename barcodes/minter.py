@@ -3,7 +3,7 @@ from typing import Generator
 from barcodes.barcode import VirtualBarcode
 
 
-def mint(
+def mint_barcodes(
     starting_sequence: int, batch_size: int, prefix: int = 33633
 ) -> Generator[str, None, None]:
     """

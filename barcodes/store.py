@@ -4,7 +4,7 @@ from typing import Any, Union
 
 import gspread
 
-from barcodes.minter import determine_starting_sequence, mint
+from barcodes.minter import determine_starting_sequence, mint_barcodes
 
 
 def add_barcodes_to_sheet(
@@ -76,7 +76,9 @@ def determine_new_barcodes(
     """
     last_barcode = get_last_barcode(sh)
     starting_sequence = determine_starting_sequence(last_barcode)
-    return list(mint(starting_sequence=starting_sequence, batch_size=batch_size))
+    return list(
+        mint_barcodes(starting_sequence=starting_sequence, batch_size=batch_size)
+    )
 
 
 def get_creds() -> Path:
