@@ -115,10 +115,14 @@ def get_last_barcode(sh: gspread.spreadsheet.Spreadsheet) -> str:
         return ""
 
 
-def get_sheet(key: str = "") -> gspread.spreadsheet.Spreadsheet:
+def get_sheet(key: str = "", creds: dict = {}) -> gspread.spreadsheet.Spreadsheet:
     """Get the virtual barcodes Google Sheet as gspread Spreadsheet object."""
-    cred_fh = get_creds()
-    gc = gspread.oauth(credentials_filename=cred_fh)
+    if creds:
+        gc = gspread.oauth_from_dict(creds)
+    else:
+        # locally stored
+        cred_fh = get_creds()
+        gc = gspread.oauth(credentials_filename=cred_fh)
 
     if not key:
         key = get_default_sheet_id()
